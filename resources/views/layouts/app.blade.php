@@ -226,7 +226,7 @@
             <a href="{{ route('lista_grados') }}" class="nav-link">
               <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
               <p>
-               Grados
+               GRADOS
               </p>
             </a>
           </li>
