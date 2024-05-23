@@ -75,6 +75,7 @@ class GradosController extends Controller
         ->get();
 
         $materias_grados = DB::table('materias_grados')
+        ->where('id_grado', '=', $id_grado)
         ->where('estado_materia_grado', '=', '1')
         ->where('eliminado_materia_grado', '=', '0')
         ->pluck('id_materia');
