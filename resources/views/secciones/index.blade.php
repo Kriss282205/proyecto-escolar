@@ -39,13 +39,7 @@
                   <td>{{ $seccion->eliminado_seccion }}</td>
                   <td>
                       <a href="{{route('editar_seccion', $seccion->id_seccion)}}" class="btn btn-success btn-xs">Editar</a>
-
-
-                      <form action="{{route('eliminar_seccion', $seccion->id_seccion)}}" method="POST" style="display:inline-block;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                      </form>
+                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $seccion->id_seccion }}', '{{ route('eliminar_seccion')}}');">Eliminar</div>
                   </td>
               </tr>
               @endforeach

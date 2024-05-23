@@ -69,9 +69,13 @@ class LapsosController extends Controller
         return redirect('lapsos');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('lapsos')->where('id', $id)->delete();
-        return redirect('/lapsos');
+        DB::table('lapsos')
+        ->where('id_lapso', $request->id)->update([
+            'eliminado_lapso' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }

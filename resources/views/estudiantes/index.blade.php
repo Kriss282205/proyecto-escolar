@@ -48,11 +48,7 @@
                   <td>{{ $estudiante->eliminado_estudiante }}</td>
                   <td>
                       <a href="{{route('editar_estudiante', $estudiante->id_estudiante)}}" class="btn btn-success btn-xs">Editar</a>
-                      <form action="/estudiantes/{{ $estudiante->id_estudiante }}" method="POST" style="display:inline-block;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                      </form>
+                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $estudiante->id_estudiante }}', '{{ route('eliminar_estudiante')}}');">Eliminar</div>
                   </td>
               </tr>
               @endforeach

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Materias</h1>
+            <h1>Inscripciones</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -19,25 +19,25 @@
     </section>
     <div class="container px-4">
       <h4> Lista </h4>
-      <a href="{{ route('crear_materia') }}" class="btn btn-warning btn-sm">Añadir Materia</a>
+      <a href="{{ route('crear_inscripcion') }}" class="btn btn-warning btn-sm">Inscribir alumno</a>
       <table class="table">
           <thead>
               <tr>
-                  <th>Nombre</th>
-                  <th>Activo</th>
-                  <th>Inactivo</th>
+                  <th>Alumno</th>
+                  <th>Grado/sección</th>
+                  <th>Año escolar</th>
                   <th>Acciones</th>
               </tr>
           </thead>
           <tbody>
-              @foreach($materias as $materia)
+              @foreach($inscripciones as $inscripcion)
               <tr>
-                  <td>{{ $materia->nombre_materia }}</td>
-                  <td>{{ $materia->estado_materia }}</td>
-                  <td>{{ $materia->eliminado_materia }}</td>
+                  <td>{{ $inscripcion->nombres }} {{ $inscripcion->apellidos }}</td>
+                  <td>{{ $inscripcion->grado }} {{ $inscripcion->seccion }}</td>
+                  <td>{{ $inscripcion->anio_escolar }}</td>
                   <td>
-                      <a href="{{route('editar_materia', $materia->id_materia)}}" class="btn btn-success btn-xs">Editar</a>
-                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $materia->id_materia }}', '{{ route('eliminar_materia')}}');">Eliminar</div>
+                      <a href="{{route('editar_inscripcion', $inscripcion->id_inscripcion)}}" class="btn btn-success btn-xs">Editar</a>
+                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $inscripcion->id_inscripcion }}', '{{ route('eliminar_inscripcion')}}');">Eliminar</div>
                   </td>
               </tr>
               @endforeach

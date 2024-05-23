@@ -29,7 +29,6 @@ class EstudiantesController extends Controller
         ->leftJoin('tipos_documentos', 'tipos_documentos.id_tipo_documento', '=', 'estudiantes.id_tipo_documento')
         ->leftJoin('grados', 'grados.id_grado', '=', 'estudiantes.id_grado_actual')
         ->get();
-        // dd($estudiantes);
         return view('estudiantes/index', compact('estudiantes'));
     }
 
@@ -94,9 +93,13 @@ class EstudiantesController extends Controller
         return redirect('estudiantes');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('estudiantes')->where('id', $id)->delete();
-        return redirect('/estudiantes');
+        DB::table('estudiantes')
+        ->where('id_estudiante', $request->id)->update([
+            'eliminado_estudiante' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }

@@ -68,9 +68,13 @@ class Tipos_documentosController extends Controller
         return redirect('tipos_documentos');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('tipos_documentos')->where('id', $id)->delete();
-        return redirect('/tipos_documentos');
+        DB::table('tipos_documentos')
+        ->where('id_tipo_documento', $request->id)->update([
+            'eliminado_tipo_documento' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }

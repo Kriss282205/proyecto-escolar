@@ -69,9 +69,13 @@ class MateriasController extends Controller
         return redirect('materias');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('materias')->where('id', $id)->delete();
-        return redirect('/materias');
+        DB::table('materias')
+        ->where('id_materia', $request->id)->update([
+            'eliminado_materia' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }

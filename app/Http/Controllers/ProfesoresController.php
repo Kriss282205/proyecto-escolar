@@ -79,9 +79,13 @@ class ProfesoresController extends Controller
         return redirect('profesores');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('profesores')->where('id', $id)->delete();
-        return redirect('/profesores');
+        DB::table('profesores')
+        ->where('id_profesor', $request->id)->update([
+            'eliminado_profesor' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }

@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Grados</h1>
+            <h1>Calificaciones</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,26 +21,20 @@
 
     <!-- Main content -->
     <div class="container px-4">
-      <h1>Añadir Grado</h1>
-      <form class="row" action= "{{route('guardar_grado')}}" method="POST">
+      <h5>Registrar calificación a <b>{{ $calificacion->apellidos }} {{ $calificacion->nombres }}</b> en la materia <b>{{ $calificacion->nombre_materia }} de {{ $calificacion->grado }} para el {{ $calificacion->lapso }}</b></h5>
+      <form class="row" action= "{{route('actualizar_calificacion')}}" method="POST">
           @csrf
+          <input type="hidden" name="id_calificacion" value="{{$calificacion->id_calificacion}}">
           <div class="form-group col-3">
-              <label for="nombres">Nombre materia:</label>
-              <input class="form-control" id="nombres" name="nombres" required>
+              <label for="calificacion">Nota:</label>
+              <input type="number" class="form-control" id="calificacion" name="calificacion" required value="{{$calificacion->calificacion}}">
           </div>
-          <div class="form-group col-12">
-              <label for="ids_materias">Seleccione las materias que cursan el grado a crear:</label>
-              <select class="form-control select2" name="ids_materias[]" id="ids_materias" multiple="multiple" required>
-                @foreach ($materias as $materia)
-                    <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
-                @endforeach
-            </select>
-        </div>
          <div class="form-group col-12">
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
          </div>
       </form>
   </div>
     <!-- /.content -->
   </div>
+
 @endsection

@@ -29,17 +29,17 @@
               <input class="form-control" id="nombres" name="nombres" required>
           </div>
           <div class="form-group col-3">
-            <label for="id_grado">Grado:</label>
-            <select class="form-control" name="id_grado" id="id_grado">
-              <option value="">Seleccione</option>
-              @foreach ($grados as $grado)
-                  <option value="{{$grado->id_grado}}">{{$grado->grado}}</option>
-              @endforeach
-          </select>
-      </div>
-         <div class="form-group col-12">
+              <label for="id_grado">Grado:</label>
+              <select class="form-control" name="id_grado" id="id_grado">
+                <option value="">Seleccione</option>
+                @foreach ($grados as $grado)
+                    <option value="{{$grado->id_grado}}">{{$grado->grado}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="form-group col-12">
               <button type="submit" class="btn btn-primary">Guardar</button>
-         </div>
+          </div>
       </form>
   </div>
     <!-- /.content -->

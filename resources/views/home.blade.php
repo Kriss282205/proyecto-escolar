@@ -18,7 +18,10 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    <section class="content">
+      Bienvenido(a) {{Auth::user()['name']}}.
+    </section>
+{{--
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -78,5 +81,6 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    --}}
   </div>
 @endsection

@@ -37,11 +37,7 @@
                   <td>{{ $lapso->eliminado_lapso }}</td>
                   <td>
                       <a href="{{route('editar_lapso', $lapso->id_lapso)}}" class="btn btn-success btn-xs">Editar</a>
-                      <form action="/lapsos/{{ $lapso->id_lapso}}" method="POST" style="display:inline-block;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                      </form>
+                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $lapso->id_lapso }}', '{{ route('eliminar_lapso')}}');">Eliminar</div>
                   </td>
               </tr>
               @endforeach

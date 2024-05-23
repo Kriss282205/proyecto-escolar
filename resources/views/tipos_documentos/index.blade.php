@@ -37,11 +37,7 @@
                   <td>{{ $tipo_documento->eliminado_tipo_documento }}</td>
                   <td>
                       <a href="{{route('editar_tipo_documento', $tipo_documento->id_tipo_documento)}}" class="btn btn-success btn-xs">Editar</a>
-                      <form action="/tipos_documentos/{{ $tipo_documento->id_tipo_documento}}" method="POST" style="display:inline-block;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                      </form>
+                      <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $tipo_documento->id_tipo_documento }}', '{{ route('eliminar_tipo_documento')}}');">Eliminar</div>
                   </td>
               </tr>
               @endforeach

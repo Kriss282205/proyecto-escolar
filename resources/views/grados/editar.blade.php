@@ -29,6 +29,14 @@
               <label for="nombres">Nombres:</label>
               <input class="form-control" id="nombres" name="nombres" required value="{{$grado->grado}}">
           </div>
+          <div class="form-group col-12">
+              <label for="ids_materias">Seleccione las materias que cursan el grado a crear:</label>
+              <select class="form-control select2" name="ids_materias[]" id="ids_materias" multiple="multiple" required value="{{ $materias_grados }}">
+                @foreach ($materias as $materia)
+                    <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
+                @endforeach
+            </select>
+        </div>
          <div class="form-group col-12">
               <button type="submit" class="btn btn-primary">Actualizar</button>
          </div>
@@ -36,4 +44,14 @@
   </div>
     <!-- /.content -->
   </div>
+
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+        var selectedIds = @json($materias_grados);
+        $('#ids_materias').val(selectedIds).trigger('change');
+    });
+</script>
 @endsection

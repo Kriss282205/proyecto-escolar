@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Sistema Escolar</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -11,6 +12,7 @@
   <link rel="stylesheet" href="{{ asset('public/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('public/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/css/select2.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -168,7 +170,7 @@
           <img src="{{ asset('public/imagenes/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::user()['name']}}</a>
         </div>
       </div>
 
@@ -226,7 +228,7 @@
             <a href="{{ route('lista_grados') }}" class="nav-link">
               <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
               <p>
-               GRADOS
+               Grados
               </p>
             </a>
           </li>
@@ -262,7 +264,22 @@
               </p>
             </a>
           </li>
-        
+          <li class="nav-item">
+            <a href="{{ route('lista_inscripciones') }}" class="nav-link">
+              <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
+              <p>
+             Inscripciones/matricula
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('lista_calificaciones') }}" class="nav-link">
+              <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
+              <p>
+             Notas/calificaciones
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -298,12 +315,55 @@
 <script src="{{ asset('public/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('public/js/demo.js') }}"></script>
+<script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('public/js/select2.min.js') }}"></script>
 <!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
+
+function eliminarTabla(id, url_eliminar) {
+  swal({
+      title: "ALERTA!",
+      text: "¿Desea eliminar el registro?",
+      icon: "warning",
+      buttons: true,
+      buttons: ["CANCELAR", "ELIMINAR"],
+      dangerMode: true,
+  })
+  .then((willDelete) => {
+      if (willDelete) {
+          $.ajax({
+              type: 'POST',
+              url: url_eliminar,
+              data: {
+                  'id': id,
+                  '_token': $('meta[name="csrf-token"]').attr('content'),
+              },
+              dataType: 'json',
+              success: function(data) {
+                  swal({
+                    icon: "success",
+                    title: "Registro eliminado con éxito!",
+                    text: ""              
+                }).then((value) => {
+                  location.reload();
+                });
+              },
+              error: function(data) {
+                  swal("Ocurrió un error en la solicitud, contacte al departamento de sistemas.");
+              }
+          });
+      }
+  });
+}
+
+$(document).ready(function(){
+    $('.select2').select2();
+});
 </script>
+@yield('scripts')
 </body>
 </html>
 

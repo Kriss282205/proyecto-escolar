@@ -82,12 +82,13 @@ class SeccionesController extends Controller
         return redirect('secciones');
     }
 
-    public function eliminar($id_seccion)
+    public function eliminar(Request $request)
     {
-        // Eliminar el registro que coincide con el id_seccion proporcionado
-        DB::table('secciones')->where('id_seccion', $id_seccion)->delete();
-
-        // Redirigir a la lista de secciones con un mensaje de éxito
-        return redirect('secciones')->with('success', 'Sección eliminada correctamente');
-    } 
+        DB::table('secciones')
+        ->where('id_seccion', $request->id)->update([
+            'eliminado_seccion' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
+    }
 }

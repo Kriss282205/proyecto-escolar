@@ -68,9 +68,13 @@ class Anios_escolaresController extends Controller
         return redirect('anios_escolares');
     }
 
-    public function eliminar($id)
+    public function eliminar(Request $request)
     {
-        DB::table('anios_escolares')->where('id', $id)->delete();
-        return redirect('/anios_escolares');
+        DB::table('anios_escolares')
+        ->where('id_anio_escolar', $request->id)->update([
+            'eliminado_anio_escolar' => '1',
+        ]);
+        $respuesta = ['exito'];
+        return json_encode($respuesta);
     }
 }
