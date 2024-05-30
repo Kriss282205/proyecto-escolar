@@ -17,9 +17,9 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
                   <th>Alumno</th>
@@ -27,6 +27,7 @@
                   <th>Lapso</th>
                   <th>Nota</th>
                   <th>Grado/sección</th>
+                  <th>Profesor</th>
                   <th>Año escolar</th>
                   <th>Acciones</th>
               </tr>
@@ -34,11 +35,12 @@
           <tbody>
               @foreach($calificaciones as $calificacion)
               <tr>
-                  <td>{{ $calificacion->apellidos }} {{ $calificacion->nombres }}</td>
+                  <td>{{ $calificacion->apellidos_estudiante }} {{ $calificacion->nombres_estudiante }}</td>
                   <td>{{ $calificacion->nombre_materia }}</td>
                   <td>{{ $calificacion->lapso }}</td>
                   <td>{{ $calificacion->calificacion }}</td>
                   <td>{{ $calificacion->grado }} {{ $calificacion->seccion }}</td>
+                  <td>{{ $calificacion->apellidos_profesor }} {{ $calificacion->nombres_profesor }}</td>
                   <td>{{ $calificacion->anio_escolar }}</td>
                   <td>
                       <a href="{{route('editar_calificacion', $calificacion->id_calificacion)}}" class="btn btn-success btn-xs">Editar</a>

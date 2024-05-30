@@ -17,15 +17,13 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_materia') }}" class="btn btn-warning btn-sm">Añadir Materia</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
-                  <th>Nombre</th>
-                  <th>Activo</th>
-                  <th>Inactivo</th>
+                  <th>Materia</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -33,9 +31,7 @@
               @foreach($materias as $materia)
               <tr>
                   <td>{{ $materia->nombre_materia }}</td>
-                  <td>{{ $materia->estado_materia }}</td>
-                  <td>{{ $materia->eliminado_materia }}</td>
-                  <td>
+                  <td style="width: 150px;">
                       <a href="{{route('editar_materia', $materia->id_materia)}}" class="btn btn-success btn-xs">Editar</a>
                       <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $materia->id_materia }}', '{{ route('eliminar_materia')}}');">Eliminar</div>
                   </td>

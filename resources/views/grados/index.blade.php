@@ -17,15 +17,13 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_grado') }}" class="btn btn-warning btn-sm">Añadir Grado</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
                   <th>Nombre</th>
-                  <th>Activo</th>
-                  <th>Inactivo</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -33,9 +31,7 @@
               @foreach($grados as $grado)
               <tr>
                   <td>{{ $grado->grado }}</td>
-                  <td>{{ $grado->estado_grado }}</td>
-                  <td>{{ $grado->eliminado_grado }}</td>
-                  <td>
+                  <td style="width: 150px;">
                       <a href="{{route('editar_grado', $grado->id_grado)}}" class="btn btn-success btn-xs">Editar</a>
                       <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $grado->id_grado }}', '{{ route('eliminar_grado')}}');">Eliminar</div>
                   </td>

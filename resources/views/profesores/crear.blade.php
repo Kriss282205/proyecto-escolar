@@ -20,7 +20,7 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h1>Añadir Profesor</h1>
       <form class="row" action= "{{route('guardar_profesor')}}" method="POST">
           @csrf
@@ -45,10 +45,6 @@
               <label for="documento">Documento:</label>
               <input class="form-control" id="documento" name="documento" required>
           </div>
-          <div class="form-group col-3">
-              <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-              <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
-         </div>
          <div class="form-group col-12">
               <button type="submit" class="btn btn-primary">Guardar</button>
          </div>

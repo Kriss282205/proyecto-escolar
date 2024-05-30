@@ -25,19 +25,22 @@ class CalificacionesController extends Controller
     public function lista_calificaciones()
     {   
         $calificaciones = DB::table('calificaciones')
+        ->select('*', 'profesores.nombres as nombres_profesor', 'profesores.apellidos as apellidos_profesor', 'estudiantes.nombres as nombres_estudiante', 'estudiantes.apellidos as apellidos_estudiante')
         ->where('eliminado_calificacion', '=', '0')
         ->leftJoin('inscripciones', 'inscripciones.id_inscripcion', '=', 'calificaciones.id_inscripcion')
         ->leftJoin('secciones', 'secciones.id_seccion', '=', 'inscripciones.id_seccion')
         ->leftJoin('grados', 'grados.id_grado', '=', 'secciones.id_grado')
         ->leftJoin('estudiantes', 'estudiantes.id_estudiante', '=', 'inscripciones.id_estudiante')
         ->leftJoin('anios_escolares', 'anios_escolares.id_anio_escolar', '=', 'inscripciones.id_anio_escolar')
-        ->leftJoin('materias', 'materias.id_materia', '=', 'calificaciones.id_materia')
+        ->leftJoin('materias_grados', 'materias_grados.id_materia_grado', '=', 'calificaciones.id_materia_grado')
+        ->leftJoin('materias', 'materias.id_materia', '=', 'materias_grados.id_materia')
         ->leftJoin('lapsos', 'lapsos.id_lapso', '=', 'calificaciones.id_lapso')
+        ->leftJoin('profesores', 'profesores.id_profesor', '=', 'materias_grados.id_profesor')
         ->orderBy('inscripciones.id_anio_escolar', 'desc')
         ->orderBy('calificaciones.id_lapso', 'desc')
-        ->orderBy('apellidos', 'desc')
-        ->orderBy('nombres', 'desc')
-        ->orderBy('nombre_materia', 'desc')
+        ->orderBy('estudiantes.apellidos', 'desc')
+        ->orderBy('estudiantes.nombres', 'desc')
+        ->orderBy('nombre_materia', 'asc')
         ->get();
         return view('calificaciones/index', compact('calificaciones'));
     }
@@ -84,7 +87,8 @@ class CalificacionesController extends Controller
         ->leftJoin('grados', 'grados.id_grado', '=', 'secciones.id_grado')
         ->leftJoin('estudiantes', 'estudiantes.id_estudiante', '=', 'inscripciones.id_estudiante')
         ->leftJoin('anios_escolares', 'anios_escolares.id_anio_escolar', '=', 'inscripciones.id_anio_escolar')
-        ->leftJoin('materias', 'materias.id_materia', '=', 'calificaciones.id_materia')
+        ->leftJoin('materias_grados', 'materias_grados.id_materia_grado', '=', 'calificaciones.id_materia_grado')
+        ->leftJoin('materias', 'materias.id_materia', '=', 'materias_grados.id_materia')
         ->leftJoin('lapsos', 'lapsos.id_lapso', '=', 'calificaciones.id_lapso')
         ->first();
        

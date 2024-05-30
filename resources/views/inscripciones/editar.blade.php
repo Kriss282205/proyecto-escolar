@@ -20,7 +20,7 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h1>Editar inscripción de alumno en año escolar</h1>
       <form class="row" action= "{{route('actualizar_inscripcion')}}" method="POST">
           @csrf

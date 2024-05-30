@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
@@ -91,6 +91,7 @@ Route::post('/inscripciones/guardar', [App\Http\Controllers\InscripcionesControl
 Route::get('/inscripciones/editar/{inscripcion_id?}', [App\Http\Controllers\InscripcionesController::class, 'editar'])->name('editar_inscripcion');
 Route::post('/inscripciones/actualizar', [App\Http\Controllers\InscripcionesController::class, 'actualizar'])->name('actualizar_inscripcion');
 Route::post('/inscripciones/eliminar', [App\Http\Controllers\InscripcionesController::class, 'eliminar'])->name('eliminar_inscripcion');
+Route::get('/inscripciones/boleta/{id_inscripcion}', [App\Http\Controllers\InscripcionesController::class, 'boleta'])->name('boleta');
 
 
 Route::get('/calificaciones', [App\Http\Controllers\CalificacionesController::class, 'lista_calificaciones'])->name('lista_calificaciones');

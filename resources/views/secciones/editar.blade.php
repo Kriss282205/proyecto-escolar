@@ -20,14 +20,14 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
-      <h1>Añadir seccion</h1>
+    <div class="container-fluid px-4">
+      <h1>Editar sección</h1>
       <form class="row" action= "{{route('actualizar_seccion')}}" method="POST">
           @csrf
           <input type="hidden" name="id_seccion" value="{{$seccion->id_seccion}}">
           <div class="form-group col-3">
-              <label for="nombres">Nombres:</label>
-              <input class="form-control" id="nombres" name="nombres" required value="{{$seccion->seccion}}">
+              <label for="seccion">Sección:</label>
+              <input class="form-control" id="seccion" name="seccion" required value="{{$seccion->seccion}}">
           </div>
           <div class="form-group col-3">
             <label for="id_grado">Grado:</label>

@@ -20,7 +20,7 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h1>Añadir Profesor</h1>
       <form class="row" action= "{{route('actualizar_profesor')}}" method="POST">
           @csrf

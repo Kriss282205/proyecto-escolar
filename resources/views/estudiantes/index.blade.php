@@ -18,10 +18,10 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_estudiante') }}" class="btn btn-warning btn-sm">Añadir Estudiante</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
                   <th>Nombres</th>
@@ -30,8 +30,6 @@
                   <th>Documento</th>
                   <th>Fecha de Nacimiento</th>
                   <th>Grado actual</th>
-                  <th>Activo</th>
-                  <th>Inactivo</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -44,8 +42,6 @@
                   <td>{{ $estudiante->documento }}</td>
                   <td>{{ $estudiante->fecha_nacimiento }}</td>
                   <td>{{ $estudiante->grado }}</td>
-                  <td>{{ $estudiante->estado_estudiante }}</td>
-                  <td>{{ $estudiante->eliminado_estudiante }}</td>
                   <td>
                       <a href="{{route('editar_estudiante', $estudiante->id_estudiante)}}" class="btn btn-success btn-xs">Editar</a>
                       <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $estudiante->id_estudiante }}', '{{ route('eliminar_estudiante')}}');">Eliminar</div>

@@ -20,13 +20,13 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
-      <h1>Añadir seccion</h1>
+    <div class="container-fluid px-4">
+      <h1>Añadir sección</h1>
       <form class="row" action= "{{route('guardar_seccion')}}" method="POST">
           @csrf
           <div class="form-group col-3">
-              <label for="nombres">Nombre:</label>
-              <input class="form-control" id="nombres" name="nombres" required>
+              <label for="seccion">Sección:</label>
+              <input class="form-control" id="seccion" name="seccion" required>
           </div>
           <div class="form-group col-3">
               <label for="id_grado">Grado:</label>

@@ -17,10 +17,10 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_lapso') }}" class="btn btn-warning btn-sm">Añadir lapso</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
                   <th>Nombre</th>

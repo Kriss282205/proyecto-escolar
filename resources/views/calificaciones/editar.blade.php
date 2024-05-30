@@ -20,7 +20,7 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h5>Registrar calificación a <b>{{ $calificacion->apellidos }} {{ $calificacion->nombres }}</b> en la materia <b>{{ $calificacion->nombre_materia }} de {{ $calificacion->grado }} para el {{ $calificacion->lapso }}</b></h5>
       <form class="row" action= "{{route('actualizar_calificacion')}}" method="POST">
           @csrf

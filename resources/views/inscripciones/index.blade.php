@@ -17,10 +17,10 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_inscripcion') }}" class="btn btn-warning btn-sm">Inscribir alumno</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
                   <th>Alumno</th>
@@ -36,6 +36,7 @@
                   <td>{{ $inscripcion->grado }} {{ $inscripcion->seccion }}</td>
                   <td>{{ $inscripcion->anio_escolar }}</td>
                   <td>
+                      <a href="{{route('boleta', $inscripcion->id_inscripcion)}}" class="btn btn-primary btn-xs">Boleta</a>
                       <a href="{{route('editar_inscripcion', $inscripcion->id_inscripcion)}}" class="btn btn-success btn-xs">Editar</a>
                       <div class="btn btn-danger btn-xs" onclick="eliminarTabla('{{ $inscripcion->id_inscripcion }}', '{{ route('eliminar_inscripcion')}}');">Eliminar</div>
                   </td>

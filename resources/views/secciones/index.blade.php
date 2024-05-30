@@ -17,14 +17,14 @@
         </div>
       </div>
     </section>
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h4> Lista </h4>
       <a href="{{ route('crear_seccion') }}" class="btn btn-warning btn-sm">Añadir seccion</a>
-      <table class="table">
+      <table id="tabla-principal" class="table table-striped table-borderless">
           <thead>
               <tr>
-                  <th>Nombre</th>
-                  <th>Grado actual</th>
+                  <th>Grado</th>
+                  <th>Sección</th>
                   <th>Activo</th>
                   <th>Inactivo</th>
                   <th>Acciones</th>
@@ -33,8 +33,8 @@
           <tbody>
               @foreach($secciones as $seccion)
               <tr>
-                  <td>{{ $seccion->seccion }}</td>
                   <td>{{ $seccion->grado }}</td>
+                  <td>{{ $seccion->seccion }}</td>
                   <td>{{ $seccion->estado_seccion }}</td>
                   <td>{{ $seccion->eliminado_seccion }}</td>
                   <td>

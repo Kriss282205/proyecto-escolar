@@ -20,23 +20,15 @@
     </section>
 
     <!-- Main content -->
-    <div class="container px-4">
+    <div class="container-fluid px-4">
       <h1>Añadir Grado</h1>
       <form class="row" action= "{{route('actualizar_grado')}}" method="POST">
           @csrf
           <input type="hidden" name="id_grado" value="{{$grado->id_grado}}">
           <div class="form-group col-3">
-              <label for="nombres">Nombres:</label>
-              <input class="form-control" id="nombres" name="nombres" required value="{{$grado->grado}}">
+              <label for="grado">Nombre del grado:</label>
+              <input class="form-control" id="grado" name="grado" required value="{{$grado->grado}}">
           </div>
-          <div class="form-group col-12">
-              <label for="ids_materias">Seleccione las materias que cursan el grado a crear:</label>
-              <select class="form-control select2" name="ids_materias[]" id="ids_materias" multiple="multiple" required value="{{ $materias_grados }}">
-                @foreach ($materias as $materia)
-                    <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
-                @endforeach
-            </select>
-        </div>
          <div class="form-group col-12">
               <button type="submit" class="btn btn-primary">Actualizar</button>
          </div>

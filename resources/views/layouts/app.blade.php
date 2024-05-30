@@ -13,6 +13,12 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('public/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('public/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/css/jquery.dataTables.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/css/responsive.dataTables.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/css/buttons.dataTables.min.css') }}"/>
+    <style type="text/css">
+      th, table {border: 0px!important;}
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -217,14 +223,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('lista_materias') }}" class="nav-link">
-              <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
-              <p>
-                Materias
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="{{ route('lista_grados') }}" class="nav-link">
               <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
               <p>
@@ -237,6 +235,14 @@
               <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
               <p>
                Secciones
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('lista_materias') }}" class="nav-link">
+              <i class="nav-icon fas fa-book-open" style="color: #fab005;"></i>
+              <p>
+                Materias
               </p>
             </a>
           </li>
@@ -280,12 +286,23 @@
               </p>
             </a>
           </li>
+          <li class="nav-item mt-4">
+            <a onclick="document.getElementById('logout-form').submit();" class="nav-link" style="cursor: pointer;">
+              <p>
+             Cerrar sesión
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+      @csrf
+  </form>
 
   <!-- Content Wrapper. Contains page content -->
   @yield('content')
@@ -317,6 +334,9 @@
 <script src="{{ asset('public/js/demo.js') }}"></script>
 <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
 <script src="{{ asset('public/js/select2.min.js') }}"></script>
+<script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('public/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('public/js/dataTables.responsive.min.js') }}"></script>
 <!-- Page specific script -->
 <script>
 $(function () {
@@ -361,6 +381,51 @@ function eliminarTabla(id, url_eliminar) {
 
 $(document).ready(function(){
     $('.select2').select2();
+      columns_export = [0, 1, 2];
+      if ($('#tabla-principal').length) {
+          $.fn.dataTable.ext.errMode = 'throw';
+          $('#tabla-principal').DataTable({
+              "lengthMenu": [ [50, 10, 25, 100, -1], [50, 10, 25, 100, "todos"] ],
+              "responsive": false,
+              "processing": false,
+              "paging": true,
+              "aaSorting": [],
+              dom: 'Blfrtip',
+              filename: 'descarga',
+              buttons: false,
+              language: {
+                searchPlaceholder: "Buscar",
+                processing:     "Procesando Información...",
+                search:         "<i class='fa fa-search'> </i> &nbsp;",
+                lengthMenu:     "_MENU_ ",
+                info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                infoFiltered:   "(filtrado de un total de _MAX_ registros)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron registros",
+                emptyTable:     "Sin registros disponibles en esta tabla",
+                paginate: {
+                    first:      "Primer",
+                    previous:   "Anterior",
+                    next:       "Siguiénte",
+                    last:       "Último"
+                },
+                aria: {
+                    sortAscending:  ": Activar para ordenar la columna de manera ascendente",
+                    sortDescending: ": Activar para ordenar la columna de manera descendente"
+                },
+                buttons: {
+                    copyTitle: 'Copiado en el portapapeles',
+                    copyKeys: 'Presione <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> para copiar los datos de la tabla a su portapapeles. <br><br>Para cancelar, haga clic en este mensaje o presione Esc.',
+                    copySuccess: {
+                        _: '%d lineas copiadas',
+                        1: '1 linea copiada'
+                    }
+                }
+            },
+          });
+      }
 });
 </script>
 @yield('scripts')

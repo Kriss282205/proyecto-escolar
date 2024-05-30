@@ -27,6 +27,7 @@ class SeccionesController extends Controller
         $secciones = DB::table('secciones')
         ->where('eliminado_seccion', '=', '0')
         ->leftJoin('grados', 'grados.id_grado', '=', 'secciones.id_grado')
+        ->orderBy('secciones.id_grado')
         ->get();
         return view('secciones/index', compact('secciones'));
     }
@@ -51,7 +52,7 @@ class SeccionesController extends Controller
     public function guardar(Request $request)
     {
         DB::table('secciones')->insert([
-            'seccion' => $request->nombres,
+            'seccion' => $request->seccion,
             'id_grado'=> $request->id_grado
             
         ]);
@@ -75,7 +76,7 @@ class SeccionesController extends Controller
     public function actualizar(Request $request)
     {
         DB::table('secciones')->where('id_seccion', $request->id_seccion)->update([
-            'seccion' => $request->nombres,
+            'seccion' => $request->seccion,
             'id_grado' => $request->id_grado,
             
         ]);
